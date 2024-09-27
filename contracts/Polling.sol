@@ -18,10 +18,19 @@ contract polling {
         newPoll.options = _options;
         newPoll.exists = true;
     }
-
-    function vote(uint _pollId, uint _optionIndex) public {
+    modifier isPollValid(uint _pollId, uint _optionIndex) {
         require(polls[_pollId].exists, "Poll does not exists");
         require(polls[_pollId].options.length > _optionIndex, "Invalid option");
+        _;
+    }
+
+    function vote(uint _pollId, uint _optionIndex) public isPollValid(_pollId,_optionIndex) {
+        
         polls[_pollId].votes[_optionIndex]++;
+    }
+
+    function getVotes(uint _pollId, uint _optionIndex) public  isPollValid(_pollId,_optionIndex) view returns(uint voteCount) {
+        voteCount = polls[_pollId].votes[_optionIndex];
+        return voteCount;
     }
 }
