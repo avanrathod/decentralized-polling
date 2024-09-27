@@ -4,7 +4,7 @@ contract polling {
     struct Poll {
         string question;
         string[] options;
-        mapping[uint => uint] votes;
+        mapping(uint => uint) votes;
         bool exists;
     }
 
@@ -16,6 +16,6 @@ contract polling {
         Poll storage newPoll = polls[pollCount];
         newPoll.question = _question;
         newPoll.options = _options;
-        newPoll.exist = true;
+        newPoll.exists = true;
     }
 }
