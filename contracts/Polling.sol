@@ -10,4 +10,12 @@ contract polling {
 
     mapping(uint => Poll) public polls;
     uint public pollCount;
+
+    function createPoll(string memory _question, string[] memory _options) public {
+        pollCount++;
+        Poll storage newPoll = polls[pollCount];
+        newPoll.question = _question;
+        newPoll.options = _options;
+        newPoll.exist = true;
+    }
 }
