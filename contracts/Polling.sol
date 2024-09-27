@@ -18,4 +18,10 @@ contract polling {
         newPoll.options = _options;
         newPoll.exists = true;
     }
+
+    function vote(uint _pollId, uint _optionIndex) public {
+        require(polls[_pollId].exists, "Poll does not exists");
+        require(polls[_pollId].options.length > _optionIndex, "Invalid option");
+        polls[_pollId].votes[_optionIndex]++;
+    }
 }
