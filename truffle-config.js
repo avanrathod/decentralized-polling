@@ -64,11 +64,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 7545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
     //
     // An additional network, but with some advanced options…
     // advanced: {
@@ -96,8 +96,13 @@ module.exports = {
     //   network_id: 2111,   // This network is yours, in the cloud.
     //   production: true    // Treats this network as if it was a public net. (default: false)
     // }
-  },
-
+    rinkeby: {
+      provider: () => new HDWalletProvider('YOUR_MNEMONIC', 'https://rinkeby.infura.io/v3/YOUR_INFURA_PROJECT_ID'),
+      network_id: 4,       // Rinkeby's id
+      gas: 4500000,        // Rinkeby has a lower block limit than mainnet
+      gasPrice: 10000000000
+    }
+  }, 
   // Set default mocha options here, use special reporters, etc.
   mocha: {
     // timeout: 100000
