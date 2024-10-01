@@ -10,6 +10,7 @@ contract polling {
 
     mapping(uint => Poll) public polls;
     uint public pollCount;
+    event Voted(uint pollId,  uint optionIndex);
 
     function createPoll(string memory _question, string[] memory _options) public {
         pollCount++;
@@ -27,6 +28,7 @@ contract polling {
     function vote(uint _pollId, uint _optionIndex) public isPollValid(_pollId,_optionIndex) {
         
         polls[_pollId].votes[_optionIndex]++;
+        emit Voted(_pollId, _optionIndex);
     }
 
     function getVotes(uint _pollId, uint _optionIndex) public  isPollValid(_pollId,_optionIndex) view returns(uint voteCount) {
