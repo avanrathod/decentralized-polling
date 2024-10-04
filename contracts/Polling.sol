@@ -1,6 +1,8 @@
-pragma solidity >=0.8.0;
+// SPDX-License-Identifier: MIT
+pragma experimental ABIEncoderV2;
+pragma solidity >=0.4.22 <0.9.0;
 
-contract polling {
+contract Polling {
     struct Poll {
         string question;
         string[] options;
